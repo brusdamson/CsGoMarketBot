@@ -15,7 +15,7 @@ namespace CsGoMarketBot.MarketMaster
         {
             _marketSecret = marketSecret;
         }
-
+        //хуй
         /// <summary>
         /// [id] — id предмета.
         /// [price] — цена в копейках (1 RUB =100, 1 USD = 1000, 1 EUR = 1000) целое число, уже какого-то выставленного лота, 
