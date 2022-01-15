@@ -10,6 +10,7 @@ namespace CsGoMarketBot
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
