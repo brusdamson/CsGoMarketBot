@@ -16,11 +16,12 @@ namespace CsGoMarketBot.MarketMaster
             _marketSecret = marketSecret;
         }
 
-        public async Task<HttpResponseMessage> BuyFor(int id, double price, string partnerLink)
         {
             HttpClient client = new HttpClient();
             var dict = new Dictionary<string, string>();
             dict.Add("key",_marketSecret);
+            dict.Add("price",price);
+            dict.Add("partner",partner);
             return await client.PostAsync(MARKETURL + "buy-for", new FormUrlEncodedContent(dict));
         }
     }
