@@ -30,10 +30,28 @@ namespace CsGoMarketBot.MarketMaster
         {
             HttpClient client = new HttpClient();
             var dict = new Dictionary<string, string>();
+            //Секретный ключ cs go market
             dict.Add("key",_marketSecret);
+            //id предмета
             dict.Add("id",idItem.ToString());
+            //Цена
             dict.Add("price",price);
+            //Кому передать [partner=]&[token=]
             dict.Add("partner",partner);
+            return await client.PostAsync(MARKETURL + "buy-for", new FormUrlEncodedContent(dict));
+        }
+        public async Task<HttpResponseMessage> BuyFor(string price, string partner, string itemHashName)
+        {
+            HttpClient client = new HttpClient();
+            var dict = new Dictionary<string, string>();
+            //Секретный ключ cs go market
+            dict.Add("key", _marketSecret);
+            //Цена
+            dict.Add("price", price);
+            //Кому передать [partner=]&[token=]
+            dict.Add("partner", partner);
+            //Название предмета
+            dict.Add("market_hash_name", itemHashName);
             return await client.PostAsync(MARKETURL + "buy-for", new FormUrlEncodedContent(dict));
         }
     }

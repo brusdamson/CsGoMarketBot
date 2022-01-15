@@ -10,5 +10,6 @@ namespace CsGoMarketBot.MarketMaster
     internal interface IResponseMarket
     {
         Task<HttpResponseMessage> BuyFor(int idItem, string price, string partner);
+        Task<HttpResponseMessage> BuyFor(string price, string partner, string itemHashName);
     }
 }
