@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -9,7 +10,6 @@ namespace CsGoMarketBot.MarketMaster
 {
     internal interface IResponseMarket
     {
-        Task<HttpResponseMessage> BuyFor(int idItem, string price, string partner);
-        Task<HttpResponseMessage> BuyFor(string price, string partner, string itemHashName);
+        Task<RestResponse> BuyFor(string price, string partner, string partnerToken, string hash_name);
     }
 }
