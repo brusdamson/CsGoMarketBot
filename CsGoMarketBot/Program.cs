@@ -19,7 +19,7 @@ namespace CsGoMarketBot
             Console.WriteLine();
             Console.Write("Введите желаему цену в рублях за предмет: ");
             int price = Convert.ToInt32(Console.ReadLine())*100;
-            Console.WriteLine();
+            Console.WriteLine();//
             Console.Write("Вставьте трейд ссылку получателя предмета: ");
             string tradelink = Console.ReadLine();
             
