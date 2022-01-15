@@ -24,5 +24,12 @@ namespace CsGoMarketBot.MarketMaster
             var req = new RestRequest();
             return await client.PostAsync(req);
         }
+
+        public async Task<RestResponse> GetStatusById(string custom_id)
+        {
+            var client = new RestClient(MARKETURL+$"&custom_id={custom_id}");
+            var req = new RestRequest();
+            return await client.PostAsync(req);
+        }
     }
 }

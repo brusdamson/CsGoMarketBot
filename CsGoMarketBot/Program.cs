@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CsGoMarketBot.MarketMaster;
+using Newtonsoft.Json;
+
 namespace CsGoMarketBot
 {
     internal class Program
@@ -29,7 +31,17 @@ namespace CsGoMarketBot
             token = token.Substring(token.IndexOf('=')+1);
 
             var response = market.BuyFor(price:price.ToString(),partner:partner,partnerToken:token,hash_name:itemName).Result.Content;
-            Console.WriteLine(response);
+
+            
+
+            Console.WriteLine("********JSON*********");
+            var a = JsonConvert.DeserializeObject(response);
+            Console.WriteLine(JsonConvert.SerializeObject(a,Formatting.Indented));
+            Console.WriteLine();
+            var answerBuy = JsonConvert.DeserializeObject<Models.BuyForModel>(response);
+            Console.WriteLine("********OBJECT*******");
+            Console.WriteLine($"Success: {answerBuy.success}");
+            Console.WriteLine($"Id: {answerBuy.id}");
             Console.ReadLine();
 
         }

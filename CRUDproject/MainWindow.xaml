@@ -83,7 +83,7 @@
                     <GradientStop Color="#FF9371F1" Offset="1"/>
                 </LinearGradientBrush>
             </Border.Background>
-            <TextBlock x:Name="descBox" Text="Описание предмета" Margin="25 25 25 25" Foreground="#DD000000" FontSize="16" FontFamily="Comic Sans MS"/>
+            <TextBlock x:Name="descBox" Text="Результат отправки запроса" Margin="25 25 25 25" Foreground="#DD000000" FontSize="16" FontFamily="Comic Sans MS"/>
         </Border>
         <materialDesign:DialogHost
             Grid.Row="1"
