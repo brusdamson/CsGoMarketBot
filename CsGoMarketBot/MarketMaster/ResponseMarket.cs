@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -7,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace CsGoMarketBot.MarketMaster
 {
-    internal class ResponseMarket : IResponseMarket
+    internal class ResponseMarket
     {
         private readonly string _marketSecret;
-        private const string MARKETURL = "https://market.csgo.com/api/v2/";
+        private readonly string MARKETURL;
         public ResponseMarket(string marketSecret)
         {
             _marketSecret = marketSecret;
+            MARKETURL = $"https://market.csgo.com/api/v2/buy-for?key={_marketSecret}";
         }
         
         /// <summary>
@@ -26,33 +28,23 @@ namespace CsGoMarketBot.MarketMaster
         /// <param name="price">Цена в копейках (1 RUB = 100)</param>
         /// <param name="partnerLink"></param>
         /// <returns></returns>
-        public async Task<HttpResponseMessage> BuyFor(int idItem, string price, string partner)
+        public async Task<RestResponse> BuyFor(string price, string partner, string partnerToken, string hash_name)
         {
-            HttpClient client = new HttpClient();
-            var dict = new Dictionary<string, string>();
-            //Секретный ключ cs go market
-            dict.Add("key",_marketSecret);
-            //id предмета
-            dict.Add("id",idItem.ToString());
-            //Цена
-            dict.Add("price",price);
-            //Кому передать [partner=]&[token=]
-            dict.Add("partner",partner);
-            return await client.PostAsync(MARKETURL + "buy-for", new FormUrlEncodedContent(dict));
+            var client = new RestClient(MARKETURL+$"&hash_name={hash_name}&price={price}&partner={partner}&token={partnerToken}");
+            var req = new RestRequest();
+            return await client.PostAsync(req);
         }
-        public async Task<HttpResponseMessage> BuyFor(string price, string partner, string itemHashName)
-        {
-            HttpClient client = new HttpClient();
-            var dict = new Dictionary<string, string>();
-            //Секретный ключ cs go market
-            dict.Add("key", _marketSecret);
-            //Цена
-            dict.Add("price", price);
-            //Кому передать [partner=]&[token=]
-            dict.Add("partner", partner);
-            //Название предмета
-            dict.Add("market_hash_name", itemHashName);
-            return await client.PostAsync(MARKETURL + "buy-for", new FormUrlEncodedContent(dict));
-        }
+        //public async Task<HttpResponseMessage> BuyFor(string price, string partner, string itemHashName)
+        //{
+        //    HttpClient client = new HttpClient();
+        //    var dict = new Dictionary<string, string>();
+        //    //Цена
+        //    dict.Add("price", price);
+        //    //Кому передать [partner=]&[token=]
+        //    dict.Add("partner", partner);
+        //    //Название предмета
+        //    dict.Add("hash_name", itemHashName);
+        //    return await client.PostAsync(MARKETURL + $"buy-for?{_marketSecret}", new FormUrlEncodedContent(dict));
+        //}
     }
 }
