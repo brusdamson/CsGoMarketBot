@@ -31,6 +31,7 @@ namespace CsGoMarketBot.MarketMaster
             HttpClient client = new HttpClient();
             var dict = new Dictionary<string, string>();
             dict.Add("key",_marketSecret);
+            dict.Add("id",idItem.ToString());
             dict.Add("price",price);
             dict.Add("partner",partner);
             return await client.PostAsync(MARKETURL + "buy-for", new FormUrlEncodedContent(dict));
