@@ -40,8 +40,13 @@ namespace CsGoMarketBot
             Console.WriteLine();
             var answerBuy = JsonConvert.DeserializeObject<Models.BuyForModel>(response);
             Console.WriteLine("********OBJECT*******");
-            Console.WriteLine($"Success: {answerBuy.success}");
-            Console.WriteLine($"Id: {answerBuy.id}");
+            Console.WriteLine($"Success: {answerBuy.Success}");
+            Console.WriteLine($"Id: {answerBuy.Id}");
+            if (String.IsNullOrEmpty(answerBuy.Price))
+                Console.WriteLine($"Price: null");
+            else
+                Console.WriteLine($"Price: {answerBuy.Price}");
+            Console.WriteLine($"Error: {answerBuy.Error}");
             Console.ReadLine();
 
         }
