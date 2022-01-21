@@ -1,5 +1,5 @@
-﻿using CsGoMarketBot.MarketMaster;
-using Newtonsoft.Json;
+﻿using CsGoMarketBot.JsonTransducer;
+using CsGoMarketBot.MarketMaster;
 using System;
 
 namespace CsGoMarketBot
@@ -9,34 +9,6 @@ namespace CsGoMarketBot
         BuyForModel,
         DataStatusModel,
         GetStatusModel
-    }
-
-    internal class JsonMaster
-    {
-        public string NormalizeJson(string response)
-        {
-            var a = JsonConvert.DeserializeObject(response);
-            return JsonConvert.SerializeObject(a, Formatting.Indented);
-        }
-
-        public T JsonToObject<T>(string response)
-        {
-            object result;
-
-            var instance1 = new Models.BuyForModel();
-            var instance2 = new Models.DataStatusModel();
-            var instance3 = new Models.GetStatusModel();
-
-            if (typeof(T) == instance1.GetType())
-                result = JsonConvert.DeserializeObject<Models.BuyForModel>(response);
-            else if (typeof(T) == instance2.GetType())
-                result = JsonConvert.DeserializeObject<Models.DataStatusModel>(response);
-            else if (typeof(T) == instance3.GetType())
-                result = JsonConvert.DeserializeObject<Models.GetStatusModel>(response);
-            else
-                result = null;
-            return (T)result;
-        }
     }
 
     internal class Program
@@ -52,7 +24,7 @@ namespace CsGoMarketBot
             Console.WriteLine();
             Console.Write("Введите желаему цену в рублях за предмет: ");
             int price = Convert.ToInt32(Console.ReadLine()) * 100;
-            Console.WriteLine();//
+            Console.WriteLine();
             Console.Write("Вставьте трейд ссылку получателя предмета: ");
             string tradelink = Console.ReadLine();
 
@@ -61,6 +33,7 @@ namespace CsGoMarketBot
             partner = partner.Substring(partner.IndexOf('=') + 1);
             token = token.Substring(token.IndexOf('=') + 1);
 
+            //Метод BuyFor
             var response = market.BuyFor(price: price.ToString(), partner: partner, partnerToken: token, hash_name: itemName).Result.Content;
 
             //JsonMaster для обработки json

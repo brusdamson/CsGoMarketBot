@@ -15,12 +15,31 @@ namespace CsGoMarketBot.MarketMaster
         public ResponseMarket(string marketSecret)
         {
             _marketSecret = marketSecret;
-            MARKETURL = $"https://market.csgo.com/api/v2/buy-for?key={_marketSecret}";
+            MARKETURL = $"https://market.csgo.com/api/v2/";
         }
 
+        /// <summary>
+        /// Покупает предмет с последующей передачей
+        /// </summary>
+        /// <param name="price"></param>
+        /// <param name="partner"></param>
+        /// <param name="partnerToken"></param>
+        /// <param name="hash_name"></param>
+        /// <returns></returns>
         public async Task<RestResponse> BuyFor(string price, string partner, string partnerToken, string hash_name)
         {
-            var client = new RestClient(MARKETURL + $"&hash_name={hash_name}&price={price}&partner={partner}&token={partnerToken}");
+            var client = new RestClient(MARKETURL + $"buy-for?key={_marketSecret}" + $"&hash_name={hash_name}&price={price}&partner={partner}&token={partnerToken}");
+            var req = new RestRequest();
+            return await client.PostAsync(req);
+        }
+        /// <summary>
+        /// Возвращает текущий баанс аккаунта
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<RestResponse> GetMoney()
+        {
+            var client = new RestClient(MARKETURL+ $"get-money?key={_marketSecret}");
             var req = new RestRequest();
             return await client.PostAsync(req);
         }

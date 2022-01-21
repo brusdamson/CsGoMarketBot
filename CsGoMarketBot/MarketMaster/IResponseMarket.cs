@@ -12,5 +12,6 @@ namespace CsGoMarketBot.MarketMaster
     {
         Task<RestResponse> BuyFor(string price, string partner, string partnerToken, string hash_name);
         Task<RestResponse> GetStatusById(string custom_id);
+        Task<RestResponse> GetMoney();
     }
 }

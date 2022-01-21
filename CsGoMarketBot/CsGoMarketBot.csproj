@@ -77,10 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonTransducer\JsonMaster.cs" />
     <Compile Include="MarketMaster\IResponseMarket.cs" />
     <Compile Include="MarketMaster\ResponseMarket.cs" />
     <Compile Include="Models\BuyForModel.cs" />
     <Compile Include="Models\DataStatusModel.cs" />
+    <Compile Include="Models\GetMoneyModel.cs" />
     <Compile Include="Models\GetStatusModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
