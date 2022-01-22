@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CsGoMarketBot.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,27 +32,16 @@ namespace CsGoMarketBot.JsonTransducer
         public T JsonToObject<T>(string response)
         {
             object result;
-            List<object> list = new List<object>();
             
-            var instance1 = new Models.BuyForModel();
-            var instance2 = new Models.DataStatusModel();
-            var instance3 = new Models.GetStatusModel();
-            var instance4 = new Models.GetMoneyModel();
-
-            list.Add(instance1);
-            list.Add(instance2);
-            list.Add(instance3);
-            list.Add(instance4);
-
-            if (typeof(T) == instance1.GetType())
-                result = JsonConvert.DeserializeObject<Models.BuyForModel>(response);
-            else if (typeof(T) == instance2.GetType())
-                result = JsonConvert.DeserializeObject<Models.DataStatusModel>(response);
-            else if (typeof(T) == instance3.GetType())
-                result = JsonConvert.DeserializeObject<Models.GetStatusModel>(response);
-            else
-                result = null;
-            return (T)result;
+            foreach (var item in ModelsContainer.GetInstance().GetModelsContainer())
+            {
+                if (typeof(T) == item.GetType())
+                {
+                    result = JsonConvert.DeserializeObject<T>(response);
+                    return (T)result;
+                }
+            }
+            return default(T);
         }
     }
 }

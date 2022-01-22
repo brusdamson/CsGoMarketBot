@@ -7,12 +7,22 @@ using System.Threading.Tasks;
 
 namespace CsGoMarketBot.Models
 {
-    internal class GetStatusModel
+    internal class GetStatusModel:IDefaultModel
     {
         [JsonProperty(PropertyName = "success")]
         public bool Success { get; set; }
 
         [JsonProperty(PropertyName = "data")]
         public IEnumerable<DataStatusModel> Data { get; set; }
+
+        public void AddModelToContainer()
+        {
+            ModelsContainer.GetInstance().AddModelToContainer(this);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

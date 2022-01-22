@@ -84,6 +84,8 @@
     <Compile Include="Models\DataStatusModel.cs" />
     <Compile Include="Models\GetMoneyModel.cs" />
     <Compile Include="Models\GetStatusModel.cs" />
+    <Compile Include="Models\IDefaultModel.cs" />
+    <Compile Include="Models\ModelsContainer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

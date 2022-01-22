@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CsGoMarketBot.Models
 {
-    internal class BuyForModel
+    internal class BuyForModel : IDefaultModel
     {
         [JsonProperty(PropertyName = "success")]
         public bool Success { get; set; }
@@ -20,5 +20,15 @@ namespace CsGoMarketBot.Models
 
         [JsonProperty(PropertyName = "error")]
         public string Error { get; set; }
+        public void AddModelToContainer()
+        {
+            ModelsContainer.GetInstance().AddModelToContainer(this);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

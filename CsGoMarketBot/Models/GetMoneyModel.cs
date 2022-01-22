@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CsGoMarketBot.Models
 {
-    internal class GetMoneyModel
+    internal class GetMoneyModel:IDefaultModel
     {
         [JsonProperty(PropertyName = "money")]
         public decimal Money { get; set; }
@@ -17,5 +17,15 @@ namespace CsGoMarketBot.Models
 
         [JsonProperty(PropertyName = "success")]
         public bool Success { get; set; }
+
+        public void AddModelToContainer()
+        {
+            ModelsContainer.GetInstance().AddModelToContainer(this);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

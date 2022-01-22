@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CsGoMarketBot.Models
 {
-    internal class DataStatusModel
+    internal class DataStatusModel:IDefaultModel
     {
         [JsonProperty(PropertyName = "item_id")]
         public int Item_Id { get; set; }
@@ -43,6 +43,16 @@ namespace CsGoMarketBot.Models
         public string For { get; set; }
 
         [JsonProperty(PropertyName = "trade_id")]
-        public string Trade_Id { get; set; } 
+        public string Trade_Id { get; set; }
+
+        public void AddModelToContainer()
+        {
+            ModelsContainer.GetInstance().AddModelToContainer(this);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
