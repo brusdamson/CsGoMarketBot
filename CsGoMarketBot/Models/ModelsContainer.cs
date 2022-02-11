@@ -12,10 +12,7 @@ namespace CsGoMarketBot.Models
         private static ModelsContainer _instance;
 
         //Конструктор защищен модификатором private. Реализация паттерна Singletone
-        private ModelsContainer()
-        {
-
-        }
+        private ModelsContainer() { }
         public static ModelsContainer GetInstance()
         {
             if (_instance == null)

@@ -4,13 +4,6 @@ using System;
 
 namespace CsGoMarketBot
 {
-    internal enum DeserializeType
-    {
-        BuyForModel,
-        DataStatusModel,
-        GetStatusModel
-    }
-
     internal class Program
     {
         private static void Main(string[] args)

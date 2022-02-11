@@ -19,10 +19,5 @@ namespace CsGoMarketBot.Models
         {
             ModelsContainer.GetInstance().AddModelToContainer(this);
         }
-
-        public void Dispose()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CsGoMarketBot.Models
 {
-    internal interface IDefaultModel : IDisposable
+    internal interface IDefaultModel
     {
         void AddModelToContainer();
     }

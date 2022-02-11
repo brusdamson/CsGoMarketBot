@@ -44,9 +44,14 @@ namespace CsGoMarketBot.MarketMaster
             return await client.PostAsync(req);
         }
 
+        /// <summary>
+        /// Возвращает статус о покупке предмета
+        /// </summary>
+        /// <param name="custom_id"></param>
+        /// <returns></returns>
         public async Task<RestResponse> GetStatusById(string custom_id)
         {
-            var client = new RestClient(MARKETURL+$"&custom_id={custom_id}");
+            var client = new RestClient(MARKETURL + $"get-buy-info-by-custom-id?key={_marketSecret}" + $"&custom_id={custom_id}");
             var req = new RestRequest();
             return await client.PostAsync(req);
         }
